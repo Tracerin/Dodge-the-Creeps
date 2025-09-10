@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3lbhrnuimhyy"]
+[gd_scene load_steps=8 format=3 uid="uid://b3lbhrnuimhyy"]
 
 [ext_resource type="Script" uid="uid://cdvveasa2byx5" path="res://hud.gd" id="1_64ctp"]
 [ext_resource type="FontFile" uid="uid://djrb0nvimy7oy" path="res://dodge_the_creeps_2d_assets/fonts/Xolonium-Regular.ttf" id="2_8sq4i"]
+[ext_resource type="PackedScene" uid="uid://co8dwgrr6nsv6" path="res://settings_menu.tscn" id="3_8sq4i"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_64ctp"]
 action = &"start_game"
@@ -9,8 +10,17 @@ action = &"start_game"
 [sub_resource type="Shortcut" id="Shortcut_8sq4i"]
 events = [SubResource("InputEventAction_64ctp")]
 
+[sub_resource type="InputEventAction" id="InputEventAction_8sq4i"]
+action = &"pause"
+
+[sub_resource type="Shortcut" id="Shortcut_640wx"]
+resource_name = "pause"
+events = [SubResource("InputEventAction_8sq4i")]
+
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_64ctp")
+
+[node name="SettingsMenu" parent="." instance=ExtResource("3_8sq4i")]
 
 [node name="ScoreLabel" type="Label" parent="."]
 anchors_preset = 5
@@ -52,9 +62,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -100.0
-offset_top = -140.0
+offset_top = -220.0
 offset_right = 100.0
-offset_bottom = -40.0
+offset_bottom = -120.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_8sq4i")
@@ -66,5 +76,36 @@ text = "Start"
 wait_time = 2.0
 one_shot = true
 
+[node name="Settings" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -110.0
+offset_right = 100.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_8sq4i")
+theme_override_font_sizes/font_size = 42
+text = "Settings"
+
+[node name="Back" type="Button" parent="."]
+visible = false
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 132.0
+offset_bottom = 75.0
+theme_override_fonts/font = ExtResource("2_8sq4i")
+theme_override_font_sizes/font_size = 42
+shortcut = SubResource("Shortcut_640wx")
+text = "Back"
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
+[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

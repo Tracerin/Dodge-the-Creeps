@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b6e8pmyu2racy" path="res://player.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://b3lbhrnuimhyy" path="res://hud.tscn" id="4_1bvp3"]
 [ext_resource type="AudioStream" uid="uid://hkl0a76bpxob" path="res://dodge_the_creeps_2d_assets/art/gameover.wav" id="5_lquwl"]
-[ext_resource type="PackedScene" uid="uid://chn15wn3jkuob" path="res://pausemenu.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://chn15wn3jkuob" path="res://pause_menu.tscn" id="6_7mycd"]
 
 [sub_resource type="Curve2D" id="Curve2D_1bvp3"]
 _data = {
@@ -59,9 +59,11 @@ rotation = -0.002079
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamOggVorbis_7mycd")
+bus = &"Music"
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_lquwl")
+bus = &"SFX"
 
 [node name="PauseMenu" parent="." instance=ExtResource("6_7mycd")]
 

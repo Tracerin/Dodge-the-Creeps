@@ -2,6 +2,7 @@ extends Node
 @export var mob_scene: PackedScene
 var score
 signal game_state_changed
+var game_active: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,6 +16,7 @@ func game_over() -> void:
 	$DeathSound.play()
 	$HUD.show_game_over()
 	game_state_changed.emit()
+	game_active = not game_active
 
 
 func new_game():
@@ -25,6 +27,7 @@ func new_game():
 	$StartTimer.start()
 	$HUD.update_score(score)
 	game_state_changed.emit()
+	game_active = not game_active
 	$HUD.show_message("Get Ready")
 
 
