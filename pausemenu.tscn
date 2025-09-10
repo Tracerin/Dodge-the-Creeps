@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://chn15wn3jkuob"]
+
+[ext_resource type="Script" uid="uid://bflrdg2xqkt2x" path="res://pausemenu.gd" id="1_0mw5b"]
+[ext_resource type="FontFile" uid="uid://djrb0nvimy7oy" path="res://dodge_the_creeps_2d_assets/fonts/Xolonium-Regular.ttf" id="2_bs354"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_0mw5b")
+
+[node name="Paused" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -126.0
+offset_top = 78.0
+offset_right = 126.0
+offset_bottom = 156.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_bs354")
+theme_override_font_sizes/font_size = 64
+text = "Paused"
