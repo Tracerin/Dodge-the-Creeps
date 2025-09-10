@@ -1,8 +1,9 @@
 extends Area2D
 signal hit
-
+signal hit_power_up
 
 @export var speed = 400 # How fast the player will move (pixels/sec).
+@export var speed_mult: float = 1
 var screen_size # Size of the game window.
 
 # Called when the node enters the scene tree for the first time.
@@ -24,7 +25,7 @@ func _process(delta: float) -> void:
 		velocity.y -= 1
 
 	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
+		velocity = velocity.normalized() * speed * speed_mult
 		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.stop()
@@ -42,11 +43,15 @@ func _process(delta: float) -> void:
 # end _process
 
 
-func _on_body_entered(_body: Node2D) -> void:
-	hide() # Player disappears after being hit.
-	hit.emit()
-	# Must be deferred as we can't change physics properties on a physics callback.
-	$CollisionShape2D.set_deferred("disabled", true)
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("mobs"):
+		hide() # Player disappears after being hit.
+		hit.emit()
+		# Must be deferred as we can't change physics properties on a physics callback.
+		$CollisionShape2D.set_deferred("disabled", true)
+	if body.is_in_group("power_ups"):
+		speed_mult = 0.7
+		hit_power_up.emit()
 # end _on_body_entered
 
 func start(pos):
@@ -54,3 +59,11 @@ func start(pos):
 	show()
 	$CollisionShape2D.disabled = false
 # end start
+
+
+func _on_power_up_picked_up() -> void:
+	speed_mult = 0.7
+	
+
+func _on_power_up_timer_timeout() -> void:
+	speed_mult = 1.0

@@ -16,3 +16,8 @@ Attempted to use AI for getting started, code was incorrect, but it did lead me 
 Attempted to just figure it out in the engine, did some wonky coding and weird signals, looked up the video linked below and was able to set it up. I also added some buttons to get to a settings menu along with some shortcuts.
 
 Video: https://www.youtube.com/watch?v=aFkRmtGiZCw 
+
+### Change 3: Slow down power up -> increased score
+- Time to complete: **~1 hour**
+
+Took me way to long, did the wrong things at first, there is some code that needs cleaning, but now it works.
